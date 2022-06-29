@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+const listOfProducts = [{
+    productName: "TV",
+    quantity: 10,
+    description: "television"
+  },
+  {
+    productName: "AC",
+    quantity: 5,
+    description: "air conditioner"
+  },
+  {
+    productName: "TV",
+    quantity: 10,
+    description: "television"
+  },
+  {
+    productName: "AC",
+    quantity: 5,
+    description: "air conditioner"
+  },
+  {
+    productName: "FAN",
+    quantity: 10,
+    description: "Ceiling Fan"
+  }
+];
+
+//solution of fisrt question
+function getUniqueProductCount(){
+    
+    var obj={};
+    for(var i=0;i<listOfProducts.length;i++){
+        var c=0;
+        var key=listOfProducts[i].productName;
+       for(var j=0;j<listOfProducts.length;j++){
+        if(key===listOfProducts[j].productName){
+        c++;
+        }
+     }
+     obj[listOfProducts[i].productName]=c;
+    }
+        return obj;
+   
+}
+//call the function 
+console.log(getUniqueProductCount());
+
+//solution of second question
+function getUniqueProducts(){
+  listOfProducts.sort((a,b)=>(a.productName>b.productName)? 1 : -1)
+    var arr=[];
+    var key;
+
+    for(var i=0;i<listOfProducts.length;i++){
+        var quantity1=0;
+        if(i===0){
+          key=listOfProducts[i].productName;
+          for(var j=0;j<listOfProducts.length;j++){
+        if(key===listOfProducts[j].productName){
+            quantity1+=listOfProducts[j].quantity;
+        }
+      }
+            listOfProducts[i].quantity=quantity1;
+            var obj1={
+               productName: listOfProducts[i].productName,
+               quantity:quantity1,
+               description:listOfProducts[i].description
+            
+           
+        }
+    arr.push(obj1);
+        }
+            else if(listOfProducts[i].productName !== listOfProducts[i-1].productName){
+               key=listOfProducts[i].productName;
+            
+            
+        for(var j=0;j<listOfProducts.length;j++){
+        if(key===listOfProducts[j].productName){
+            quantity1+=listOfProducts[j].quantity;
+        }
+      }
+            listOfProducts[i].quantity=quantity1;
+            var obj1={
+               productName: listOfProducts[i].productName,
+               quantity:quantity1,
+               description:listOfProducts[i].description  
+        }
+
+    arr.push(obj1);
+   }
+  }
+   return arr;
+}
+//call the function
+console.log(getUniqueProducts());
+
+
+</script>
